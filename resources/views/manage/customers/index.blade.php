@@ -79,8 +79,9 @@
 
 	<div class="container">
 	 
-                       
-                      	<a href="{{route('customer.create')}}" class="btn btn-success">ADD CUSTOMER</a>
+          @can('create_customers')          
+          <a href="{{route('customer.create')}}" class="btn btn-success">ADD CUSTOMER</a>
+          @endcan
                        
                  
                       	
@@ -99,11 +100,12 @@
                           <th>Phone</th>
                           <th>Email</th>
                           <th>Status</th>
-                         
+                          @can('edit_customers')
                           <th class="notexport">Edit</th>
-                         
+                         @endcan
+                         @can('delete_customers')
                           <th class="notexport">Delete</th>
-                         
+                         @endcan
                         </tr>
                       </thead>
 
@@ -120,12 +122,16 @@
                           <td>{{$customer->phone}}</td>
                           <td>{{$customer->email}}</td>
                           <td>{{$customer->isActive == 1 ?"Active":"Not Active" }}</td>
-                          
+                          @can('edit_customers')
                           <td>
+                            
                             <a href="{{ route('customer.edit', $customer->id) }}" class="btn btn-info btn-xs"><span class="fa fa-edit"></span></a>
+                            
                           </td>
-                          
+                          @endcan
+                          @can('delete_customers')
                           <td>
+                            
                           <form method="post" action="{{  route('customer.delete' , array($customer->id)) }}" id="delete-form-{{$customer->id}}">
                             {{csrf_field()}} 
                             {{method_field('DELETE')}}
@@ -142,8 +148,9 @@
                               }
 
                             "><span class="fa fa-trash-o"></span></a> 
+
                           </td>
-                        
+                        @endcan
                         </tr>
                     
                       @endforeach

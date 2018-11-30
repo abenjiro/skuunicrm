@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Providers;
-//use App\Permission;
+use App\Permission;
 
-//use Illuminate\Contracts\Auth\Access\Gate as GateContract;
+use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -16,7 +16,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
-        Customer::class => CustomerPolicy::class,
+        'App\Customer' => 'App\Policies\CustomerPolicy',
+        
     ];
 
     /**
@@ -24,26 +25,27 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(GateContract $gate)
     {
-        $this->registerPolicies();
+        $this->registerPolicies($gate);
 
         
-        //foreach ($this->getPermissions() as $permission) {
-          //  $gate->define($permission->name, function($user) use ($permission) {
-            //    return $user->hasRole($permission->roles);
-            //});
-        //}
-        Gate::resource('customer', 'CustomerPolicy');
-
-        Gate::define('create_customers', function($user){
-            $user->hasAccess(['create_customers']);
-        });
+        foreach ($this->getPermissions() as $permission) 
+        {
+            $gate->define($permission->name, function($user) use ($permission) {
+               return $user->hasRole($permission->roles);
+            });
+        }
+        
 
     }
 
-    //protected function getPermissions()
-    //{
-      //  return Permission::with('roles')->get();
-    //}
+    protected function getPermissions()
+    {
+    try {
+            return Permission::with('roles')->get();
+    } catch (\Exception $e) {
+        return [];
+        }
+    }
 }

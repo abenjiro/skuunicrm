@@ -61,7 +61,7 @@ class CustomerController extends Controller
 
      public function update(Request $request, $id)
     {
-        //
+       // $this->authorize('update',  $customer);
         //validate data
         $this->validate($request, [
             'school_name' => 'required',
@@ -90,7 +90,9 @@ class CustomerController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        //
+
+    //$this->authorize(ability: 'update', arguments: $customer);
+
     $customer = Customer::find($id);
     
     $customer->delete();

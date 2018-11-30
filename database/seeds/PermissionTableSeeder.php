@@ -16,22 +16,34 @@ class PermissionTableSeeder extends Seeder
         DB::table('permissions')->insert([
             [
                 'name' => 'create_customers',
-                'label' => 'Add new the customers',
+                'label' => 'Ability to add new the customers',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
         	[
         		'name' => 'edit_customers',
-        		'label' => 'Edit the customer details',
+        		'label' => 'Ability to edit the customer details',
         		'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         		'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         	],
         	[
         		'name' => 'delete_customers',
-        		'label' => 'Delete the customer details',
+        		'label' => 'Ability to delete the customer details',
         		'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         		'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-        	]
+        	],
+            [
+                'name' => 'read_user_button',
+                'label' => 'Ability to read and use the users button',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                'name' => 'read_roles_permission_button',
+                'label' => 'Ability to read and use roles & permissions',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ]
         ]);
     }
 }

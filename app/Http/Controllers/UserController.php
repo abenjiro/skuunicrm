@@ -197,9 +197,21 @@ class UserController extends Controller
             'password' => $request['password']
          ])) {
             // Authentication passed...
-            return redirect()->route('posts.index');
+            return redirect()->route('manage.dashboard');
         }else{
-            return "Wrong Email or Password";
+
+          $request->session()->flash('warning', 'invalid user name or password');
+          //return redirect()->route('login.user');
         }
+    }
+
+
+    public function authenticated(Request $request, $user)
+    {
+        if (!$user->verified) {
+            auth()->logout();
+            return back()->with('warning', 'You need to comfirm your account. We have sent you an activation code, please check your mail');
+        }
+        return redirect()->intended($this->redirectPath());
     }
 }

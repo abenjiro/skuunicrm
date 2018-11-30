@@ -29,14 +29,18 @@
                   </li>
                   <li><a href="{{route('customer.index')}}"><i class="fa fa-users"></i> Customer </a>
                   </li>
+                  @can('read_user_button')
                   <li><a href="{{route('user.index')}}"><i class="fa fa-user"></i> User </a>
                   </li>
+                  @endcan
+                  @can('read_roles_permission_button')
                   <li><a><i class="fa fa-edit"></i> Roles & Permission <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{route('role.index')}}">Roles</a></li>
                       <li><a href="{{route('permission.index')}}">Permission</a></li>
                     </ul>
                   </li>
+                  @endcan
                  
                  
                   
