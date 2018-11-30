@@ -79,6 +79,7 @@
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                           <button type="submit" class="btn btn-success">UPDATE</button>
+                          <button onclick="location.href='{{route('customer.index')}}'" type="button" class="btn btn-danger">Cancel</button>
                         </div>
                       </div>
 

@@ -10,9 +10,7 @@
 
 @section('content')
 	<div class="page-title">
-              <div class="title_left">
-                <h3>Add New Customers</h3>
-              </div>
+              
 
             </div>
             <div class="clearfix"></div>
@@ -20,19 +18,11 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Customer <small>form</small></h2>
+                    <h2>Add New Customer</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
+                      
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
                       </li>
                     </ul>
@@ -59,7 +49,7 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="role" class="control-label col-md-3 col-sm-3 col-xs-12">Role </label>
+                        <label for="role" class="control-label col-md-3 col-sm-3 col-xs-12">Role <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input id="role" class="form-control col-md-7 col-xs-12" type="text" name="role">
                         </div>
@@ -99,6 +89,7 @@
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                           <button type="submit" class="btn btn-success">Submit</button>
+                          <button onclick="location.href='{{route('customer.index')}}'" type="button" class="btn btn-danger">Cancel</button>
                         </div>
                       </div>
 

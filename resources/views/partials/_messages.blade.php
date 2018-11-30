@@ -1,7 +1,7 @@
 <div style="margin-top: 15px;"></div>
 @if (Session::has('success'))
 
-	<div class="alert alert-success" role="alert">
+	<div class="alert alert-info" role="alert">
 		<strong>Success: </strong>{{ Session::get('success') }}
 	</div>
 
