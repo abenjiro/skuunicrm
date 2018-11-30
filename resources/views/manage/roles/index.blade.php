@@ -26,7 +26,7 @@
  
     
  
-    $('#userTable').DataTable( {
+    $('#roleTable').DataTable( {
         
         
     } );
@@ -36,50 +36,44 @@
 @endsection
 
 @section('content')
-
-<a href="{{route('user.create')}}" class="btn btn-success">ADD USER</a>
+	 <a href="{{route('role.create')}}" class="btn btn-success">ADD role</a>
 
 
                     <!-- start project list -->
-                    <table id="userTable" class="table table-striped projects">
+                    <table id="roleTable" class="table table-striped projects">
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th style="width: 20%">User Name</th>
-                          <th>Email</th>
-                          <th>Role</th>
-                          <th>Edit</th>
-                          <th>Delete</th>
-
+                          <th>role Name</th>
+                          <th>Details</th>
+                          
+                          <th >Edit</th>
+                          <th >Delete</th>
                         </tr>
                       </thead>
                       <tbody>
 
-                        @foreach($users as $user)
+                        @foreach($roles as $role)
 
                         
                         <tr>
                           <td>{{$loop->index + 1}}</td>
                           <td>
-                            {{$user->name}}
+                            {{$role->name}}
                           </td>
                           <td>
-                          	{{$user->email}}
+                            {{$role->label}}
                           </td>
-                          <td>
-                            @foreach($user->roles as $role )
-                              {{$role->name}},
-                            @endforeach
-                          </td>
+                         
                           
                         
                           <td>
                             
-                            <a href="{{route('user.edit', $user->id)}}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                            
+                            <a href="{{route('role.edit', $role->id)}}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                              
                           </td>
                           <td>
-                            <form method="post" action="{{  route('user.delete' , array($user->id)) }}" id="delete-form-{{$user->id}}">
+                            <form method="post" action="{{  route('role.delete' , array($role->id)) }}" id="delete-form-{{$role->id}}">
                             {{csrf_field()}} 
                             {{method_field('DELETE')}}
                           
@@ -88,20 +82,18 @@
 
                             if (confirm('Are you sure, You Want to delete this?')) {
                               event.preventDefault();
-                              document.getElementById('delete-form-{{$user->id}}').submit();
+                              document.getElementById('delete-form-{{$role->id}}').submit();
                             }
                               else{
                                 event.preventDefault();
                               }
 
-                            "><span class="fa fa-trash-o"></span> Delete </a> 
+                            "><span class="fa fa-trash-o"></span> Delete </a>
                           </td>
                         </tr>
                         @endforeach
                       </tbody>
                     </table>
                     <!-- end project list -->
-
-               
-
 @endsection
+

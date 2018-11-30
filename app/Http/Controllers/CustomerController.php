@@ -10,7 +10,11 @@ use Datatables;
 
 class CustomerController extends Controller
 {
-    
+    public function index()
+    {
+        $customers = Customer::all();
+        return view('manage.customers.index', compact('customers'));
+    }
 
     public function create()
     {
@@ -22,7 +26,7 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
     	$this->validate($request,[
-            'school_name' => 'required|max:255',
+            'school_name' => 'required',
             'contact_person' => 'required',
             'role' => 'required',
             'phone' => 'required',
@@ -44,7 +48,7 @@ class CustomerController extends Controller
 
         $request->session()->flash('success', 'customer was successfully saved');
 
-        return redirect()->route('manage.dashboard');
+        return redirect()->route('customer.index');
     }
 
 
@@ -60,7 +64,7 @@ class CustomerController extends Controller
         //
         //validate data
         $this->validate($request, [
-            'school_name' => 'required|max:255',
+            'school_name' => 'required',
             'contact_person' => 'required',
             'role' => 'required',
             'phone' => 'required',
@@ -80,20 +84,20 @@ class CustomerController extends Controller
         //set flash
         $request->session()->flash('success', 'Customer updated');
         //redirect
-        return redirect()->route('manage.dashboard');
+        return redirect()->route('customer.index');
     }
 
 
     public function destroy(Request $request, $id)
     {
         //
-    $post = Customer::find($id);
+    $customer = Customer::find($id);
     
-    $post->delete();
+    $customer->delete();
         
     $request->session()->flash('success', 'Customer deleted');
 
-    return redirect()->route('manage.dashboard');
+    return redirect()->route('customer.index');
     }
 
 }

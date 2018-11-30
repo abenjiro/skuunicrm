@@ -26,7 +26,7 @@
  
     
  
-    $('#userTable').DataTable( {
+    $('#permissionTable').DataTable( {
         
         
     } );
@@ -36,18 +36,18 @@
 @endsection
 
 @section('content')
-
-<a href="{{route('user.create')}}" class="btn btn-success">ADD USER</a>
+	<a href="{{route('permission.create')}}" class="btn btn-success">ADD permission</a>
 
 
                     <!-- start project list -->
-                    <table id="userTable" class="table table-striped projects">
+                    <table id="permissionTable" class="table table-striped projects">
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th style="width: 20%">User Name</th>
-                          <th>Email</th>
-                          <th>Role</th>
+                          <th>Permission Name</th>
+                          
+                          <th>Details</th>
+                          
                           <th>Edit</th>
                           <th>Delete</th>
 
@@ -55,31 +55,30 @@
                       </thead>
                       <tbody>
 
-                        @foreach($users as $user)
+                        @foreach($permissions as $permission)
 
                         
                         <tr>
-                          <td>{{$loop->index + 1}}</td>
+                          <td>{{$loop->index + 1 }}</td>
                           <td>
-                            {{$user->name}}
+                            {{$permission->name}}
                           </td>
+                          
                           <td>
-                          	{{$user->email}}
+                          	{{$permission->label}}
                           </td>
-                          <td>
-                            @foreach($user->roles as $role )
-                              {{$role->name}},
-                            @endforeach
-                          </td>
+                         
                           
                         
                           <td>
                             
-                            <a href="{{route('user.edit', $user->id)}}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                            <a href="{{route('permission.edit', $permission->id)}}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+
+                            
                             
                           </td>
                           <td>
-                            <form method="post" action="{{  route('user.delete' , array($user->id)) }}" id="delete-form-{{$user->id}}">
+                            <form method="post" action="{{  route('permission.delete' , array($permission->id)) }}" id="delete-form-{{$permission->id}}">
                             {{csrf_field()}} 
                             {{method_field('DELETE')}}
                           
@@ -88,7 +87,7 @@
 
                             if (confirm('Are you sure, You Want to delete this?')) {
                               event.preventDefault();
-                              document.getElementById('delete-form-{{$user->id}}').submit();
+                              document.getElementById('delete-form-{{$permission->id}}').submit();
                             }
                               else{
                                 event.preventDefault();
@@ -101,7 +100,4 @@
                       </tbody>
                     </table>
                     <!-- end project list -->
-
-               
-
 @endsection

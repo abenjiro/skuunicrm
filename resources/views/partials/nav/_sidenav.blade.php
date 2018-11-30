@@ -27,12 +27,14 @@
                 <ul class="nav side-menu">
                   <li><a href="{{route('manage.dashboard')}}"><i class="fa fa-home"></i> Home </a>
                   </li>
+                  <li><a href="{{route('customer.index')}}"><i class="fa fa-users"></i> Customer </a>
+                  </li>
                   <li><a href="{{route('user.index')}}"><i class="fa fa-user"></i> User </a>
                   </li>
                   <li><a><i class="fa fa-edit"></i> Roles & Permission <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Roles</a></li>
-                      <li><a href="#">Permission</a></li>
+                      <li><a href="{{route('role.index')}}">Roles</a></li>
+                      <li><a href="{{route('permission.index')}}">Permission</a></li>
                     </ul>
                   </li>
                  

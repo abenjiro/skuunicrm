@@ -37,6 +37,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
+    public function getNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
     public function assignRole($role){
         return $this->roles()->sync(
             Role::whereName($role)->firstOrFail()

@@ -1,117 +1,130 @@
 @extends('layouts.manage')
 
 @section('dynamicJs')
-	
+	<script type="text/javascript">
+    $(document).ready(function(){
+    $(".radioBtn").change(function(){
+      $("#password").attr("disabled", true);
+      // alert($("input[name=radio]:checked").val())
+      if ($("input[name=radio]:checked").val() == "manual") {
+        $("#password").attr("disabled", false);
+      }
+    });
+  });
+  </script>
 	
 @endsection
 
 @section('content')
-	<h1>Edit user</h1>
-	<div class="row">
-                <form class="bs-example form-horizontal" method="POST" action="{{route('user.update', $users->id)}}">
-                        {{method_field('PUT')}}
-                        {{csrf_field()}}
-              <div class="col-sm-6" >
-                
-              <section class="panel panel-default">
-                    <header class="panel-heading font-bold">Horizontal form</header>
-                    <div class="panel-body" >
-                      
+	<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Update Registered User</div>
 
-                        <div class="form-group">
-                          <label class="col-lg-2 control-label">Name</label>
-                          <div class="col-lg-10">
-                            <input type="text" name="name" class="form-control" placeholder="Name" value="{{$users->name}}">
-                            <span class="help-block m-b-none">Example block-level help text here.</span>
-                          </div>
+                <div class="panel-body">
+                    <form action="{{ route('user.update', $user->id) }}" method="post" class="form-horizontal form-label-left">
+                    {{csrf_field()}} {{ method_field('PATCH') }}
+
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 control-label">User Name</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control" name="name" value="@if(old('name')){{ old('name')}}@else{{$user->name}}@endif" required autofocus>
+
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                         </div>
-                        <div class="form-group">
-                          <label class="col-lg-2 control-label">Email</label>
-                          <div class="col-lg-10">
-                            <input type="email" class="form-control" name="email" placeholder="Email" value="{{$users->email}}">
-                            <span class="help-block m-b-none">Example block-level help text here.</span>
-                          </div>
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" name="email" value="@if(old('email')){{ old('email')}}@else{{$user->email}}@endif" required>
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                         </div>
+
+                       
                         <div class="form-group">
-                          <label class="col-lg-2 control-label">Password</label>
-                          <div class="col-lg-10" >
+                          <label class="col-md-4 control-label">Password</label>
+                          <div class="col-md-6" >
                           <!-- radio -->
                             <div class="radio">
                               <label class="radio-custom">
-                                <input type="radio" name="radio" v-model="password_options" class="radioBtn"  value="keep" checked="checked">
-                                <i class="fa fa-circle-o"></i>
+                                <input type="radio" name="radio"  class="radioBtn"  value="keep" checked="checked">
+                                <i class=""></i>
                                 Do Not Change Password
                               </label>
                             </div>
                             <div class="radio">
                               <label class="radio-custom">
-                                <input type="radio" name="radio" v-model="password_options" class="radioBtn" value="auto">
-                                <i class="fa fa-circle-o"></i>
+                                <input type="radio" name="radio"  class="radioBtn" value="auto">
+                                <i class=""></i>
                                 Auto-Generate New Password
                               </label>
                             </div>
                             <div class="radio">
                               <label class="radio-custom">
-                                <input type="radio" name="radio" v-model="password_options" class="radioBtn" value="manual">
-                                <i class="fa fa-circle-o"></i>
+                                <input type="radio" name="radio"  class="radioBtn" value="manual">
+                                <i class=""></i>
                                 Manually Set New Password
                               </label>
                             </div>
 
                             <div class="">
-                            <input type="password" name="password" v-if="password_options == 'manual'" class="form-control" id="password"  placeholder="Manually give Password to this User" >
+                            <input type="password" name="password"  class="form-control" id="password"  placeholder="Manually give Password to this User" >
                           </div>
                           </div>
                         </div>
-                        
-                        
-                      
-                    </div>
-                  </section>
-                
-                  </div>
 
-            
-            <div class="col-sm-6 ">
-              
-              <!-- .comment-list -->
-                 
-                    <article id="comment-id-1" class="comment-item">
-                      
-                      <span class="arrow left"></span>
-                      <section class="comment-body panel panel-default">
-                        <header class="panel-heading bg-white">
-                          <a href="#"><h2>Roles:</h2></a>
-                          <label class="label bg-info m-l-xs"></label> 
-                        </header>
-                        
-                        <div class="panel-body">
-                          <label for="roles"></label>
-                          <input type="hidden" name="roles" :value="rolesSelected">
-                          
+                        <div class="form-group">
+                            <label for="role" class="col-md-4 control-label">Assign Role</label>
+
+                            <div class="form-group col-md-3">
+
                             @foreach($roles as $role)
-                              
-                              <div class="checkbox">
-                                <input type="checkbox" v-model="rolesSelected" value="{{$role->id}}" id="{{$role->id}}" name="rolesSelected">{{$role->name}} <em><small>({{$role->label}})</small></em>
-
-                              </div>
-
+                                <div class="">
+                                   <div class="checkbox">
+                                       <label><input type="checkbox" name="role[]" value="{{$role->id}}"
+                                      @foreach($user->roles as $user_role)
+                                        @if($user_role->id == $role->id)
+                                        checked 
+                                        @endif
+                                      @endforeach>{{$role->name}}</label>
+                                   </div> 
+                                </div>
                             @endforeach
-                          
-                          
+        
+                            </div>
                         </div>
-                      </section>
-                    </article>
-              
-      </div>
 
-      <div class="form-group">
-                          <div class="col-lg-offset-2 col-lg-10">
-                            <button type="submit" class="btn btn-sm btn-default">£dit User</button>
-                          </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Update
+                                </button>
+
+
+                            <button onclick="location.href='{{route('user.index')}}'" type="button"  class="btn btn-warning">Cancel</button>
+
+
+                                
+                            </div>
                         </div>
-      
-         </form>
-                      
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 @endsection

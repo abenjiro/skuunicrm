@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Skuuni CRM</title>
 
     
 
@@ -35,6 +35,7 @@
         <!-- page content -->
         <div class="right_col" role="main">
          <div class="page-title">
+        @include('partials._messages')
           @yield('content')
          </div> 
         </div>

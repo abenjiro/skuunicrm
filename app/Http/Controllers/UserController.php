@@ -10,6 +10,10 @@ use Session;
 use Hash;
 use Auth;
 
+use App\Verification;
+use App\Mail\VerificationMail;
+use Mail;
+
 
 class UserController extends Controller
 {
@@ -33,7 +37,8 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('manage.users.create');
+        $roles = Role::all();
+        return view('manage.users.create', compact('roles'));
     }
 
     /**
@@ -44,7 +49,59 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+         $this->validate($request,[
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        $user = new User;
+        
+        
+      $user->name = $request['name'];
+      $user->email = $request['email'];
+      $user->password = bcrypt($request['password']);
+
+       $user->save();
+
+      $user->Roles()->sync($request->role);
+
+        $verify = Verification::create([
+            'user_id' => $user->id,
+            'token' => str_random(40)
+        ]);
+
+        Mail::to($user->email)->send(new VerificationMail($user));
+        //return $user;
+       
+
+        $request->session()->flash('success', 'user was successfully saved | Email Sent');
+
+        return redirect()->route('user.index');
+    }
+
+    public function verification($token)
+    {
+        $verify = Verification::where('token', $token)->first();
+        if (isset($verify)) {
+            $user = $verify->user;
+            if (!$user->verified) {
+                $verify->user->verified = 1;
+                $verify->user->save();
+                $status = "Your email is verified, you can login now";
+            }else{
+                $status = "Your email is already verified, you can login now";
+            }
+        }else{
+           return redirect('/manage/users/index')->with('warning', 'Sorry your email cannot be identified');
+        }
+        return redirect('/manage/users/index')->with('success', $status);
+    }
+
+    protected function registered(Request $request, $user){
+        $this->guard()->logout();
+        return redirect('/manage/users/index')->with('success', 'We sent you an activation code. Check your email and click on the link to verify.');
     }
 
     /**
@@ -67,8 +124,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $roles = Role::all();
-        $users = User::where('id', $id)->with('roles')->first();
-        return view('manage.users.edit', compact('users', 'roles'));
+        $user = User::find($id);
+        return view('manage.users.edit', compact('user','roles'));
     }
 
     /**
@@ -104,8 +161,8 @@ class UserController extends Controller
 
         $user->save();
 
-        $user->roles()->sync(explode(',', $request->roles));
-        return redirect()->route('users.show', $id);
+        $user->Roles()->sync($request->role);
+        return redirect()->route('user.index');
     }
 
     /**
@@ -114,14 +171,35 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+     public function destroy(Request $request, $id)
     {
-        //
-    }
+    $user = User::find($id);
+    
+    $user->delete();
+        
+    $request->session()->flash('success', 'user deleted');
 
+    return redirect()->route('user.index');
+    }
 
     public function logout (Request $request){
         Auth::logout();
-        return redirect()->route('index');
+        return redirect()->route('login.user');
+    }
+
+    public function loginUsers(){
+        return view('auth.login');
+    }
+
+    public function findUsers(Request $request){
+         if (Auth::attempt([
+            'email' => $request['email'], 
+            'password' => $request['password']
+         ])) {
+            // Authentication passed...
+            return redirect()->route('posts.index');
+        }else{
+            return "Wrong Email or Password";
+        }
     }
 }

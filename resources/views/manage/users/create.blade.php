@@ -6,14 +6,14 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">Register New User</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('user.store') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="name" class="col-md-4 control-label">User Name</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -63,10 +63,32 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="role" class="col-md-4 control-label">Assign Role</label>
+
+                            <div class="form-group col-md-3">
+
+                            @foreach($roles as $role)
+                                <div class="">
+                                   <div class="checkbox">
+                                       <label><input type="checkbox" name="role[]" value="{{$role->id}}">{{$role->name}}</label>
+                                   </div> 
+                                </div>
+                            @endforeach
+        
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Register
                                 </button>
+
+
+                            <button onclick="location.href='{{route('user.index')}}'" type="button"  class="btn btn-warning">Cancel</button>
+
+
+                                
                             </div>
                         </div>
                     </form>

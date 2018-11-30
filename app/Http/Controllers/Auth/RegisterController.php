@@ -81,7 +81,8 @@ class RegisterController extends Controller
         return $user;
     }
 
-    public function verification($token){
+    public function verification($token)
+    {
         $verify = Verification::where('token', $token)->first();
         if (isset($verify)) {
             $user = $verify->user;
