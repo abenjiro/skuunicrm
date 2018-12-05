@@ -26,11 +26,11 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
     	$this->validate($request,[
-            'school_name' => 'required',
-            'contact_person' => 'required',
-            'role' => 'required',
-            'phone' => 'required',
-            'email' => 'required',
+            'school_name' => 'required|min:5',
+            'contact_person' => 'required|min:5',
+            'role' => 'required|min:3',
+            'phone' => 'required|min:10',
+            'email' => 'required|unique:customers',
 
         ]);
 
@@ -46,7 +46,7 @@ class CustomerController extends Controller
 
         $customer->save();
 
-        $request->session()->flash('success', 'customer was successfully saved');
+        $request->session()->flash('success', 'Customer Was Successfully Saved');
 
         return redirect()->route('customer.index');
     }
@@ -66,8 +66,8 @@ class CustomerController extends Controller
         $this->validate($request, [
             'school_name' => 'required',
             'contact_person' => 'required',
-            'role' => 'required',
-            'phone' => 'required',
+            'role' => 'required|min:3',
+            'phone' => 'required|min:10',
             'email' => 'required',
         ]);
         //save the data
@@ -82,7 +82,7 @@ class CustomerController extends Controller
 
         $customer->save();
         //set flash
-        $request->session()->flash('success', 'Customer updated');
+        $request->session()->flash('success', 'Customer Updated');
         //redirect
         return redirect()->route('customer.index');
     }
@@ -97,7 +97,7 @@ class CustomerController extends Controller
     
     $customer->delete();
         
-    $request->session()->flash('success', 'Customer deleted');
+    $request->session()->flash('success', 'Customer Deleted');
 
     return redirect()->route('customer.index');
     }

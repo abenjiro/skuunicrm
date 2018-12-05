@@ -54,5 +54,5 @@ Route::match(['put', 'patch'],'/update/{id}', 'PermissionController@update')->na
 Route::delete('/{id}', 'PermissionController@destroy')->name('permission.delete');
 });
 
-Route::get('/verification/{token}', 'Auth\RegisterController@verification');
+Route::get('/verification/{token}', 'UserController@verification');
 

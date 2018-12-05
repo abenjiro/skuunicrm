@@ -23,13 +23,13 @@
              
                     <div class="form-group">
                       <label>permission Name</label>
-                      <input type="text" name="name" class="form-control" value="{{$permission->name}}">
+                      <input type="text" name="name" class="form-control" value="{{$permission->name}}" readonly="readonly">
                     </div>
                     <div class="form-group">
                       <label>permission Description</label>
                       <input type="text" name="label" class="form-control" value="{{$permission->label}}">
                     </div>
-					<button type="submit" class="btn btn-default">Edit permission</button>
+					<button type="submit" class="btn btn-success">Edit permission</button>
 					<button onclick="location.href='{{route('permission.index')}}'" type="button" class="btn btn-danger">Cancel</button>
                   </form>
                 </div>

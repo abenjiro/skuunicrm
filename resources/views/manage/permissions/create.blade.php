@@ -30,14 +30,8 @@
                       <label>permission Description</label>
                       <input type="text" name="label" class="form-control" placeholder="Details of permission">
                     </div>
-                    {{-- <div class="form-group">
-                      <label for="for">permission for</label>
-                      <select name="for" class="form-control">
-                      	<option>Admin</option>
-                      	<option>Guest</option>
-                      </select>
-                    </div> --}}
-					<button type="submit" class="btn btn-default">Add permission</button>
+                    
+					<button type="submit" class="btn btn-success">Add Permission</button>
 					<button onclick="location.href='{{route('permission.index')}}'" type="button" class="btn btn-danger">Cancel</button>
                   </form>
                 </div>

@@ -36,11 +36,12 @@
 @endsection
 
 @section('content')
-	<a href="{{route('permission.create')}}" class="btn btn-success">ADD permission</a>
+	<a href="{{route('permission.create')}}" class="btn btn-success">ADD PERMISSION</a>
 
 
                     <!-- start project list -->
-                    <table id="permissionTable" class="table table-striped projects">
+                  <div class="table-responsive">
+                    <table id="permissionTable" class="table table-responsive table-striped projects">
                       <thead>
                         <tr>
                           <th>#</th>
@@ -83,7 +84,7 @@
                             {{method_field('DELETE')}}
                           
                             </form>
-                            <a href="" class="btn btn-danger btn-xs" onclick="
+                            <a href="" class="btn btn-danger btn-xs disabled" onclick="
 
                             if (confirm('Are you sure, You Want to delete this?')) {
                               event.preventDefault();
@@ -99,5 +100,6 @@
                         @endforeach
                       </tbody>
                     </table>
+                  </div>
                     <!-- end project list -->
 @endsection

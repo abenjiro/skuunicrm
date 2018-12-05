@@ -99,6 +99,7 @@ class PermissionController extends Controller
         $permission->label = $request->label;
 
         $permission->save();
+        $request->session()->flash('success', 'Permission Updated');
         return redirect()->route('permission.index');
     }
 

@@ -104,6 +104,8 @@ class RoleController extends Controller
         $role->save();
 
         $role->Permissions()->sync($request->permission);
+
+        $request->session()->flash('success', 'role updated');
         return redirect()->route('role.index');
     }
 

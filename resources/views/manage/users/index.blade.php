@@ -41,7 +41,8 @@
 
 
                     <!-- start project list -->
-                    <table id="userTable" class="table table-striped projects">
+                    <div class="table-responsive">
+                    <table id="userTable" class="table table-responsive table-striped projects">
                       <thead>
                         <tr>
                           <th>#</th>
@@ -100,6 +101,7 @@
                         @endforeach
                       </tbody>
                     </table>
+                  </div>
                     <!-- end project list -->
 
                

@@ -7,6 +7,9 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
+use Illuminate\Http\Request;
+use App\User;
+
 class VerificationMail extends Mailable
 {
     use Queueable, SerializesModels;
@@ -21,6 +24,7 @@ class VerificationMail extends Mailable
     public function __construct($user)
     {
         $this->user = $user;
+        
     }
 
     /**
@@ -28,8 +32,15 @@ class VerificationMail extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function build(Request $request)
     {
-        return $this->view('emails.mymail');
+        $data = [
+      
+      'name' => $request->name,
+      'email' => $request->email,
+      'password' => $request->password,
+    ];
+        //dd($data);
+        return $this->view('emails.mymail', compact('data'));
     }
 }

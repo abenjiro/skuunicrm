@@ -1,5 +1,5 @@
 <?php
-
+/**
 namespace App\Http\Controllers\Auth;
 
 use App\User;
@@ -23,7 +23,7 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
+/**
     use RegistersUsers;
 
     /**
@@ -31,14 +31,14 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/manage/index';
+   // protected $redirectTo = '/manage/index';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+   /* public function __construct()
     {
         $this->middleware('guest');
     }
@@ -49,7 +49,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+   /* protected function validator(array $data)
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
@@ -64,7 +64,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+   /* protected function create(array $data)
     {
         $user =  User::create([
             'name' => $data['name'],

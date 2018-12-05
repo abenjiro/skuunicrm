@@ -19,7 +19,7 @@
 <script type="text/javascript" src="{{ asset('js/vfs_fonts.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/buttons.html5.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/buttons.print.min.js')}}"></script>
-<script type="text/javascript" src="http://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js"></script>
+{{-- <script type="text/javascript" src="http://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js"></script> --}}
 
 <script type="text/javascript">
 
@@ -29,21 +29,22 @@
     
  
     $('#customerTable').DataTable( {
+        "scrollX": true,
         responsive: true,
-        dom: 'Bfrtip',
+        dom: 'lBfrtip',
         buttons: [
             'copy',
             {
                 extend: 'excel',
-                title: 'Skuuni Customer Data',
-                messageTop: 'List of all Skuuni customers',
+                title: 'SKUUNI CUSTOMER DATA',
+                messageTop: 'LIST OF ALL SKUUNI CUSTOMERS',
                 exportOptions: {
                   columns: ':not(.notexport)'
         }
             },
             {
                 extend: 'pdf',
-                title: 'Skuuni Customer Data',
+                title: 'SKUUNI CUSTOMER DATA',
                 messageBottom: null,
                 exportOptions: {
                   columns: ':not(.notexport)'
@@ -51,17 +52,17 @@
             },
             {
                 extend: 'print',
-                title: 'Skuuni Customer Data',
-                messageTop: function () {
-                    printCounter++;
+                title: 'SKUUNI CUSTOMER DATA',
+                // messageTop: function () {
+                //     printCounter++;
  
-                    if ( printCounter === 1 ) {
-                        return 'This is the first time you have printed this document.';
-                    }
-                    else {
-                        return 'You have printed this document '+printCounter+' times';
-                    }
-                },
+                //     if ( printCounter === 1 ) {
+                //         return 'This is the first time you have printed this document.';
+                //     }
+                //     else {
+                //         return 'You have printed this document '+printCounter+' times';
+                //     }
+                // },
                 messageBottom: null,
                 exportOptions: {
                   columns: ':not(.notexport)'
@@ -90,7 +91,7 @@
 
                 
                 
-                  <table id="customerTable" class="table table-striped table-bordered table-responsive table-hover">
+                  <table id="customerTable" class="table table-striped table-bordered table-responsive table-hover" class="display nowrap" style="width:100%">
                       <thead>
                         <tr>
                           <th>#</th>

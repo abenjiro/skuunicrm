@@ -36,15 +36,16 @@
 @endsection
 
 @section('content')
-	 <a href="{{route('role.create')}}" class="btn btn-success">ADD role</a>
+	 <a href="{{route('role.create')}}" class="btn btn-success">ADD ROLE</a>
 
 
                     <!-- start project list -->
-                    <table id="roleTable" class="table table-striped projects">
+                  <div class="table-responsive">
+                    <table id="roleTable" class="table table-responsive table-striped projects">
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>role Name</th>
+                          <th>Role Name</th>
                           <th>Details</th>
                           
                           <th >Edit</th>
@@ -78,7 +79,7 @@
                             {{method_field('DELETE')}}
                           
                             </form>
-                            <a href="" class="btn btn-danger btn-xs" onclick="
+                            <a href="" class="btn btn-danger btn-xs disabled" onclick="
 
                             if (confirm('Are you sure, You Want to delete this?')) {
                               event.preventDefault();
@@ -94,6 +95,7 @@
                         @endforeach
                       </tbody>
                     </table>
+                  </div>
                     <!-- end project list -->
 @endsection
 

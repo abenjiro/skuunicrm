@@ -69,8 +69,8 @@
 
                             @foreach($roles as $role)
                                 <div class="">
-                                   <div class="checkbox">
-                                       <label><input type="checkbox" name="role[]" value="{{$role->id}}">{{$role->name}}</label>
+                                   <div class="radio">
+                                       <label><input type="radio" name="role" value="{{$role->id}}">{{$role->name}}</label>
                                    </div> 
                                 </div>
                             @endforeach
@@ -80,12 +80,12 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-success">
                                     Register
                                 </button>
 
 
-                            <button onclick="location.href='{{route('user.index')}}'" type="button"  class="btn btn-warning">Cancel</button>
+                            <button onclick="location.href='{{route('user.index')}}'" type="button"  class="btn btn-danger">Cancel</button>
 
 
                                 

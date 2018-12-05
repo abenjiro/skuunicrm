@@ -51,10 +51,14 @@ class UserController extends Controller
     {
 
          $this->validate($request,[
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required'
+            'name' => 'required|max:255',
+            'email' => 'required|unique:users',
+            'password' => 'required|confirmed',
+            'role' => 'required',
         ]);
+
+    
+
 
         $user = new User;
         
@@ -71,12 +75,13 @@ class UserController extends Controller
             'user_id' => $user->id,
             'token' => str_random(40)
         ]);
+        
 
         Mail::to($user->email)->send(new VerificationMail($user));
-        //return $user;
+        //return $data['password'];
        
 
-        $request->session()->flash('success', 'user was successfully saved | Email Sent');
+        $request->session()->flash('success', 'User Was Successfully Saved | Email Sent');
 
         return redirect()->route('user.index');
     }
@@ -94,14 +99,14 @@ class UserController extends Controller
                 $status = "Your email is already verified, you can login now";
             }
         }else{
-           return redirect('/manage/users/index')->with('warning', 'Sorry your email cannot be identified');
+           return redirect('/login')->with('warning', 'Sorry your email cannot be identified');
         }
-        return redirect('/manage/users/index')->with('success', $status);
+        return redirect('/login')->with('success', $status);
     }
 
     protected function registered(Request $request, $user){
         $this->guard()->logout();
-        return redirect('/manage/users/index')->with('success', 'We sent you an activation code. Check your email and click on the link to verify.');
+        return redirect('/login')->with('success', 'We sent you an activation code. Check your email and click on the link to verify.');
     }
 
     /**
@@ -162,6 +167,16 @@ class UserController extends Controller
         $user->save();
 
         $user->Roles()->sync($request->role);
+
+        // $verify = Verification::create([
+           // 'user_id' => $user->id,
+           // 'token' => str_random(40)
+        //]);
+        
+
+        Mail::to($user->email)->send(new VerificationMail($user));
+
+        $request->session()->flash('success', 'User Updated');
         return redirect()->route('user.index');
     }
 
@@ -177,7 +192,7 @@ class UserController extends Controller
     
     $user->delete();
         
-    $request->session()->flash('success', 'user deleted');
+    $request->session()->flash('success', 'User Deleted');
 
     return redirect()->route('user.index');
     }

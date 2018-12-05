@@ -46,7 +46,7 @@
                     </div>
 
           <div class="form-group co-lg-12">
-          <button type="submit" class="btn btn-default">Add Role</button>
+          <button type="submit" class="btn btn-success">Add Role</button>
           <button onclick="location.href='{{route('role.index')}}'" type="button" class="btn btn-danger">Cancel</button>
           </div>
 					
