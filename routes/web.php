@@ -9,7 +9,7 @@ Route::get('/', 'UserController@loginUsers')->name('login.user');
 Route::get('/logout', 'UserController@logout')->name('log-out');
 
 
-Route::get('manage/index', 'ManageController@index')->name('manage.dashboard');
+Route::get('manage/index', 'ManageController@index')->name('manage.dashboard')->middleware('auth');
 
 //For all customers
 Route::group(['prefix'=>'manage/customers', 'middleware'=>'auth'],function(){
