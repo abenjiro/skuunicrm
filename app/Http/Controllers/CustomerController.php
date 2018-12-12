@@ -56,6 +56,7 @@ class CustomerController extends Controller
     {
         //
         $customer = Customer::find($id);
+        //dd($customer);
         return view('manage.customers.edit', compact('customer'));
     }
 

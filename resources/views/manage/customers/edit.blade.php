@@ -77,7 +77,13 @@
                           <div class="checkbox">
                             <label>
                               <input type='hidden' value='0' name='isActive'>
-                              <input type="checkbox" name="isActive" value="1" class="flat" > Checked means Active
+                              <input type="checkbox" name="isActive" value="1" class="flat" 
+                            
+                                @if($customer->isActive == 1)
+                                 checked="checked" 
+                                @endif
+                              
+                               > Checked means Active
                             </label>
                           </div>
                       </div>

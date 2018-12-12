@@ -31,23 +31,32 @@
                 </div>
               </div>
             </a>
-
+            
+            @can('read_roles_permission_button')  
+            <a href="{{route('role.index')}}">
+            @endcan
               <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="tile-stats">
-                  <div class="icon"><i class="fa fa-sort-amount-desc" style="color: green;"></i></div>
-                  <div class="count">179</div>
-                  <h3>New Sign ups</h3>
-                  <p>Lorem ipsum psdea itgum rixt.</p>
+                  <div class="icon"><i class="fa fa-cogs" style="color: green;"></i></div>
+                  <div class="count">{{$roles}}</div>
+                  <h3>Roles</h3>
+                  <p>Total Category of Users</p>
                 </div>
               </div>
+            </a>
+            
+            @can('read_roles_permission_button') 
+            <a href="{{route('permission.index')}}">
+            @endcan
               <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div class="tile-stats">
                   <div class="icon"><i class="fa fa-check-square-o" style="color: black;"></i></div>
-                  <div class="count">179</div>
-                  <h3>New Sign ups</h3>
-                  <p>Lorem ipsum psdea itgum rixt.</p>
+                  <div class="count">{{$permissions}}</div>
+                  <h3>Permissions</h3>
+                  <p>Total Permissions Accessible to Users</p>
                 </div>
               </div>
+            </a>
             </div>
         </div>
     </div>

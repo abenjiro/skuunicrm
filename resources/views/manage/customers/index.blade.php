@@ -4,7 +4,12 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.dataTables.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/buttons.dataTables.min.css')}}">
 
-	
+<style type="text/css">
+  table tbody th,
+table tbody td {
+    white-space: nowrap;
+}
+</style>
   
 @endsection
 
@@ -30,6 +35,7 @@
  
     $('#customerTable').DataTable( {
         "scrollX": true,
+        "autoWidth": true,
         responsive: true,
         dom: 'lBfrtip',
         buttons: [

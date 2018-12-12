@@ -82,7 +82,7 @@
                             </div>
 
                             <div class="">
-                            <input type="password" name="password"  class="form-control" id="password"  placeholder="Manually give Password to this User" >
+                            <input type="password" name="password"  class="form-control" id="password"  placeholder="Manually give Password to this User" required="required">
                           </div>
                           </div>
                         </div>
