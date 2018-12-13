@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="{{route('manage.dashboard')}}" class="site_title"><i class="fa fa-paw"></i> <span>SKUUNI!</span></a>
+              <a href="{{route('manage.dashboard')}}" class="site_title"><i class="fa fa-child"></i> <span>SKUUNI!</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -9,7 +9,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="{{ asset('img/skuuni.png')}}" alt="..." class="img-circle profile_img" height="55">
+                <img src="{{ asset('img/skuuni.svg')}}" alt="..." class="img-circle profile_img" height="55">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
@@ -53,7 +53,7 @@
 
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
+              {{-- <a data-toggle="tooltip" data-placement="top" title="Settings">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
               </a>
               <a data-toggle="tooltip" data-placement="top" title="FullScreen">
@@ -62,9 +62,9 @@
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
+              </a> --}}
             </div>
             <!-- /menu footer buttons -->
           </div>
