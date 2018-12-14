@@ -49,9 +49,11 @@ table tbody td {
         }
             },
             {
-                extend: 'pdf',
+                extend: 'pdfHtml5',
                 title: 'SKUUNI CUSTOMER DATA',
+                pageSize: 'A4',
                 messageBottom: null,
+                
                 exportOptions: {
                   columns: ':not(.notexport)'
         }

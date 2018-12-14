@@ -24,7 +24,7 @@
                   	{{csrf_field()}}
                     <div class="form-group">
                       <label>permission Name</label>
-                      <input type="text" name="name" class="form-control" placeholder="Enter permission Title">
+                      <input type="text" name="name" class="form-control" placeholder="example: add_users">
                     </div>
                     <div class="form-group">
                       <label>permission Description</label>
