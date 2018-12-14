@@ -85,19 +85,28 @@ table tbody td {
       
 
 	<div class="container">
+
+    <div class="clearfix"></div>
+
+            <div class="row">
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  
+                  <div class="x_content">
 	 
           @can('create_customers')          
           <a href="{{route('customer.create')}}" class="btn btn-success">ADD CUSTOMER</a>
           @endcan
                        
-                 
+        <hr>
                       	
                     
               
 
                 
                 
-                  <table id="customerTable" class="table table-striped table-bordered table-responsive table-hover" class="display nowrap" style="width:100%">
+        <table id="customerTable" class="table table-striped table-bordered table-responsive table-hover" class="display nowrap" style="width:100%">
                       <thead>
                         <tr>
                           <th>#</th>
@@ -166,7 +175,10 @@ table tbody td {
 
 
                   </div>
-   
+   </div>
+ </div>
+</div>
+</div>
 
 
 

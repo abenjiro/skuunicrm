@@ -36,13 +36,23 @@
 @endsection
 
 @section('content')
+<div class="container">
+
+    <div class="clearfix"></div>
+
+            <div class="row">
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  
+                  <div class="x_content">
 
 <a href="{{route('user.create')}}" class="btn btn-success">ADD USER</a>
 
-
+<hr>
                     <!-- start project list -->
                     <div class="table-responsive">
-                    <table id="userTable" class="table table-responsive table-striped projects">
+                    <table id="userTable" class="table table-responsive table-striped projects" class="display nowrap" style="width:100%">
                       <thead>
                         <tr>
                           <th>#</th>
@@ -104,6 +114,10 @@
                   </div>
                     <!-- end project list -->
 
-               
+                  </div> 
+                </div>
+              </div>
+            </div>
+          </div>                  
 
 @endsection

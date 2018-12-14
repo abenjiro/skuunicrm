@@ -27,7 +27,9 @@
     
  
     $('#roleTable').DataTable( {
-        
+         "scrollX": true,
+        "autoWidth": true,
+        responsive: true
         
     } );
 } );
@@ -36,12 +38,24 @@
 @endsection
 
 @section('content')
+
+<div class="container">
+
+    <div class="clearfix"></div>
+
+            <div class="row">
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  
+                  <div class="x_content">
+
 	 <a href="{{route('role.create')}}" class="btn btn-success">ADD ROLE</a>
 
-
+    <hr>
                     <!-- start project list -->
-                  <div class="table-responsive">
-                    <table id="roleTable" class="table table-responsive table-striped projects">
+                  <div class="">
+                    <table id="roleTable" class="table table-responsive table-striped projects" class="display nowrap" style="width:100%">
                       <thead>
                         <tr>
                           <th>#</th>
@@ -97,5 +111,12 @@
                     </table>
                   </div>
                     <!-- end project list -->
+
+
+                </div> 
+                </div>
+              </div>
+            </div>
+          </div>     
 @endsection
 

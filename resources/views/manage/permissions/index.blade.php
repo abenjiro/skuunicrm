@@ -27,7 +27,9 @@
     
  
     $('#permissionTable').DataTable( {
-        
+        "scrollX": true,
+        "autoWidth": true,
+        responsive: true
         
     } );
 } );
@@ -36,12 +38,25 @@
 @endsection
 
 @section('content')
+<div class="container">
+
+    <div class="clearfix"></div>
+
+            <div class="row">
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  
+                  <div class="x_content">
+
+
 	<a href="{{route('permission.create')}}" class="btn btn-success">ADD PERMISSION</a>
 
+<hr>
 
                     <!-- start project list -->
-                  <div class="table-responsive">
-                    <table id="permissionTable" class="table table-responsive table-striped projects">
+                  <div class="">
+                    <table id="permissionTable" class="table table-responsive table-striped projects" class="display nowrap" style="width:100%">
                       <thead>
                         <tr>
                           <th>#</th>
@@ -102,4 +117,10 @@
                     </table>
                   </div>
                     <!-- end project list -->
+
+                  </div> 
+                </div>
+              </div>
+            </div>
+          </div>
 @endsection
