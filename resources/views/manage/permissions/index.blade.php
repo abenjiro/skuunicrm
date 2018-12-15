@@ -101,7 +101,7 @@
                             </form>
                             <a href="" class="btn btn-danger btn-xs disabled" onclick="
 
-                            if (confirm('Are you sure, You Want to delete this?')) {
+                            if (confirm('Are you sure, You want to delete this permission?')) {
                               event.preventDefault();
                               document.getElementById('delete-form-{{$permission->id}}').submit();
                             }

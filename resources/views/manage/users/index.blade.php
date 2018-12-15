@@ -97,7 +97,7 @@
                             </form>
                             <a href="" class="btn btn-danger btn-xs" onclick="
 
-                            if (confirm('Are you sure, You Want to delete this?')) {
+                            if (confirm('Are you sure, You want to delete this user?')) {
                               event.preventDefault();
                               document.getElementById('delete-form-{{$user->id}}').submit();
                             }
