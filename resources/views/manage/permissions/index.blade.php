@@ -99,7 +99,7 @@
                             {{method_field('DELETE')}}
                           
                             </form>
-                            <a href="" class="btn btn-danger btn-xs disabled" onclick="
+                            <button class="btn btn-danger btn-xs" onclick="
 
                             if (confirm('Are you sure, You want to delete this permission?')) {
                               event.preventDefault();
@@ -109,7 +109,8 @@
                                 event.preventDefault();
                               }
 
-                            "><span class="fa fa-trash-o"></span> Delete </a> 
+                            "data-toggle="tooltip" data-placement="right" title="Currently disabled to prevent system errors (Contact Admin)" disabled="disabled"><span class="fa fa-trash-o"></span> Delete</button>
+       
                           </td>
                         </tr>
                         @endforeach

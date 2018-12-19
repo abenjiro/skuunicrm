@@ -25,7 +25,7 @@
                   	{{csrf_field()}}
                     <div class="form-group">
                       <label>Role Name</label>
-                      <input type="text" name="name" class="form-control" placeholder="Enter Role Title">
+                      <input type="text" name="name" class="form-control" placeholder="Example: Editor">
                     </div>
                     <div class="form-group">
                       <label>Role Description</label>
