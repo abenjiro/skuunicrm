@@ -8,11 +8,11 @@ Auth::routes();
 Route::get('/', 'UserController@loginUsers')->name('login.user');
 Route::get('/logout', 'UserController@logout')->name('log-out');
 
-
-Route::get('manage/index', 'ManageController@index')->name('manage.dashboard')->middleware('auth');
-
+Route::group(['prefix'=>'manage', 'middleware'=>['auth','revalidate']],function() {
+Route::get('/index', 'ManageController@index')->name('manage.dashboard')->middleware('auth');
+});
 //For all customers
-Route::group(['prefix'=>'manage/customers', 'middleware'=>'auth'],function(){
+Route::group(['prefix'=>'manage/customers', 'middleware'=>['auth','revalidate']],function(){
 
 Route::get('/index', 'CustomerController@index')->name('customer.index');
 Route::get('/create', 'CustomerController@create')->name('customer.create');
@@ -25,7 +25,7 @@ Route::delete('/{id}', 'CustomerController@destroy')->name('customer.delete');
 
 
 //For all users
-Route::group(['prefix'=>'manage/users', 'middleware'=>'auth'],function(){
+Route::group(['prefix'=>'manage/users', 'middleware'=>['auth','revalidate']],function(){
 Route::get('/index', 'UserController@index')->name('user.index');
 Route::get('/create', 'UserController@create')->name('user.create');
 Route::post('/store', 'UserController@store')->name('user.store');
@@ -35,7 +35,7 @@ Route::delete('/{id}', 'UserController@destroy')->name('user.delete');
 });
 
 //For all Roles
-Route::group(['prefix'=>'manage/roles', 'middleware'=>'auth'],function(){
+Route::group(['prefix'=>'manage/roles', 'middleware'=>['auth','revalidate']],function(){
 Route::get('/index', 'RoleController@index')->name('role.index');
 Route::get('/create', 'RoleController@create')->name('role.create');
 Route::post('/store', 'RoleController@store')->name('role.store');
@@ -45,7 +45,7 @@ Route::delete('/{id}', 'RoleController@destroy')->name('role.delete');
 });
 
 //For all Permission
-Route::group(['prefix'=>'manage/permissions', 'middleware'=>'auth'],function(){
+Route::group(['prefix'=>'manage/permissions', 'middleware'=>['auth','revalidate']],function(){
 Route::get('/index', 'PermissionController@index')->name('permission.index');
 Route::get('/create', 'PermissionController@create')->name('permission.create');
 Route::post('/store', 'PermissionController@store')->name('permission.store');
