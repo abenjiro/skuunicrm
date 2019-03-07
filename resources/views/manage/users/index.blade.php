@@ -10,7 +10,7 @@
 @section('dynamicJs')
 
 
-<script type="text/javascript" src="{{ asset('js/jquery-3.3.1.js')}}"></script>
+{{-- <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.js')}}"></script> --}}
 <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/dataTables.buttons.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/jszip.min.js')}}"></script>
@@ -59,6 +59,7 @@
                           <th style="width: 20%">User Name</th>
                           <th>Email</th>
                           <th>Role</th>
+                          <th>Status</th>
                           <th>Edit</th>
                           <th>Delete</th>
 
@@ -82,7 +83,7 @@
                               {{$role->name}},
                             @endforeach
                           </td>
-                          
+                          <td>{{($user->verified == 1)? 'Verified' : 'Not-verified'}}</td>
                         
                           <td>
                             

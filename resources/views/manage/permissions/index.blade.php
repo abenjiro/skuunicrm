@@ -10,7 +10,7 @@
 @section('dynamicJs')
 
 
-<script type="text/javascript" src="{{ asset('js/jquery-3.3.1.js')}}"></script>
+{{-- <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.js')}}"></script> --}}
 <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/dataTables.buttons.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('js/jszip.min.js')}}"></script>

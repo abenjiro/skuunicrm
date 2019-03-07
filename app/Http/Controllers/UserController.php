@@ -26,6 +26,7 @@ class UserController extends Controller
     {
         //
          $users = User::orderBy('id' , 'desc')->paginate(10);
+         //dd($users);
         return view('manage.users.index' , compact('users'));
     }
 

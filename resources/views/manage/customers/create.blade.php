@@ -80,7 +80,7 @@
                           <div class="checkbox">
                             <label>
                               <input type='hidden' value='0' name='isActive'>
-                              <input type="checkbox" name="isActive" value="1" class="flat"> Checked means Active
+                              <input type="checkbox" name="isActive" value="1" class=""> Checked means Active
                             </label>
                           </div>
                       </div>

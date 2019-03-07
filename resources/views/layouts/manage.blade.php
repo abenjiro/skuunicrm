@@ -15,8 +15,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/mCustomScrollbar.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/nprogress.css') }}" rel="stylesheet">
+{{--     <link href="{{ asset('css/mCustomScrollbar.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/nprogress.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('css/custom.min.css') }}" rel="stylesheet">
 
 
@@ -49,12 +49,12 @@
 
     
  <!-- Scripts -->
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-3.3.1.js')}}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     
-    <script src="{{ asset('js/fastclick.js') }}"></script>
+{{--     <script src="{{ asset('js/fastclick.js') }}"></script>
     <script src="{{ asset('js/nprogress.js') }}"></script>
-    <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script> --}}
     
 
 
